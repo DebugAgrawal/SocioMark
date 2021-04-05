@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
-export default function UserProfile() {
-  return <div>User Profile</div>;
+export default function UserFeed() {
+  const { user } = useContext(AuthContext);
+  return (
+    <div>
+      <div className="text-2xl font-bold">Hey {user?.name}</div>
+    </div>
+  );
 }

@@ -22,6 +22,22 @@ export const AuthProvider = (props) => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   async function fetchCurrentUser(){
+  //     let response = await axios
+  //     .get("http://localhost:8000/user/current_user", {
+  //       //Change to "https://sociomark-backend.herokuapp.com/user/current_user/"" once the backend is deployed
+  //       headers: {
+  //         Authorization: "Bearer " + access,
+  //       },
+  //     })
+  //     response = await response.json()
+  //     dataSet(response)
+  //   }
+
+  //   fetchMyAPI()
+  // }, [])
+
   return (
     <AuthContext.Provider value={user}>{props.children}</AuthContext.Provider>
   );
