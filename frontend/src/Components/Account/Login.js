@@ -3,7 +3,7 @@ import { navigate, A } from "hookrouter";
 import axios from "axios";
 import { Loading } from "../Common/Loader";
 import { toast } from 'react-toastify';
-
+ 
 export default function Login() {
   const initForm = {
     email: "",
@@ -39,19 +39,22 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div className="body">
       {loading ? (
         <Loading />
       ) : (
-        <div className="flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8">
+        <div className="bg-login-img flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8 pb-96">
           <div className="max-w-md w-full">
+            <div className="text-black text-3xl font-bold mt-6">
+              To Continue, log in to SocioMark
+            </div>
             <form
               onSubmit={handleSubmit}
-              className="bg-white shadow rounded px-8 pt-6 pb-8 my-5 lg:my-20"
+              className="bg-transparent shadow rounded px-8 pt-6 pb-8 my-5 lg:my-20"
             >
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-base font-bold mb-2 mt-4"
                   htmlFor="email"
                 >
                   Email
@@ -62,13 +65,13 @@ export default function Login() {
                   value={form.email}
                   type="email"
                   onChange={handleChange}
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline"
+                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-white leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Enter your email"
                 />
               </div>
               <div className="mb-2">
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-white text-base font-bold mb-2 mt-10"
                   htmlFor="password"
                 >
                   Password
@@ -79,18 +82,18 @@ export default function Login() {
                   type="password"
                   value={form.password}
                   onChange={handleChange}
-                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline"
+                  className="appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-white leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="********"
                 />
               </div>
 
-              <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center justify-center">
                 <button
                   type="submit"
-                  className="flex items-center bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 sm:px-3 rounded focus:outline-none focus:shadow-outline"
+                  className="flex items-center bg-black hover:bg-primary text-white font-bold py-2 px-4 sm:px-3 rounded focus:outline-none focus:shadow-outline mt-10"
                 >
                   <svg
-                    className="h-5 w-5 text-red-600 transition ease-in-out duration-150 mr-1"
+                    className="h-5 w-5 text-white transition ease-in-out duration-150 mr-1"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
