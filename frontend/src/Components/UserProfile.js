@@ -2,13 +2,49 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import Post from "./Post/Post";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { Loading } from "../Components/Common/Loader";
 import { POST_GET_ALL_URL } from "../constants";
+import { UPDATE_USER_URL } from "../constants";
 
 export default function UserProfile() {
   const { user, token } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [description, setDescription] = useState("");
+  const [file, setFile] = useState({ fileUpload: null });
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    setFile({
+      fileUpload: file,
+    });
+    e.preventDefault();
+    setLoading(true);
+    var bodyFormData = new FormData();
+    bodyFormData.append("description", description);
+    if (file.fileUpload) {
+      bodyFormData.append("image", file.fileUpload);
+    }
+    axios
+      .patch(UPDATE_USER_URL, bodyFormData, {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((res) => {
+        setLoading(false);
+        toast.success(JSON.stringify(res.data.message));
+      })
+      .catch(({ response }) => {
+        if (response) {
+          toast.error(JSON.stringify(response.data.detail));
+        }
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +79,7 @@ export default function UserProfile() {
               <div className="absolute w-1/2 text-sm">
               <input aria-label="profile_picture"
                       name="profile_picture"
- 
+                      onChange={handleFileUpload}
                       type="file"
                       accept="image/*"
                       class="absolute w-full border z-10 opacity-0 hover:opacity-100 duration-300 rounded bg-blue-200 leading-tight focus:outline-none focus:shadow-outline"/>
