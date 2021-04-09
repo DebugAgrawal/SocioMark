@@ -32,13 +32,22 @@ export default function UserProfile() {
       ) : (
         <div className="flex flex-col sm:flex-row mx-auto bg-white h-auto text-xl justify-center">
           <div className="flex md:flex-col flex-wrap w-full sm:w-1/2 items-center pt-20 ">
-            <div className="flex flex-col md:w-1/2 items-center mx-auto">
-              <div className=" items-center">
+            <div className="relative flex flex-col md:w-1/2 items-center justify-center mx-auto z-0 hover:opacity-50 duration-300">
+              <div className=" items-center ">
                 <img
                   className="h-40 w-40 border-black border-2 rounded-full"
                   src={user[0].profile_picture}
                   alt
                 />
+              </div>
+              <div className="absolute w-1/2 text-sm">
+              <input aria-label="profile_picture"
+                      name="profile_picture"
+ 
+                      type="file"
+                      accept="image/*"
+                      class="absolute w-full border z-10 opacity-0 hover:opacity-100 duration-300 rounded bg-blue-200 leading-tight focus:outline-none focus:shadow-outline"/>
+                      {" "}
               </div>
             </div>
 
